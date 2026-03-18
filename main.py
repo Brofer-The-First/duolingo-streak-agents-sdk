@@ -1,6 +1,6 @@
 import asyncio
 import tools
-from agents import Agent, Runner, SessionSettings, RunConfig, trace
+from agents import Agent, Runner, trace
 from dotenv import load_dotenv
 
 load_dotenv()  # Load environment variables from .env file
