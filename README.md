@@ -4,12 +4,14 @@ An AI agentic workflow that automatically logs in to Duolingo and solves exercis
 
 ## How it works
 
-Two agents run in sequence:
+By default, login is handled manually via hardcoded click coordinates (`manual_login`). Optionally, an AI agent can handle login instead (see [Configuration](#configuration)).
 
-1. **Login Agent** — Opens duolingo.com, logs in using your credentials, and starts a lesson.
-2. **Solve Agent** — Solves the current exercise using screenshots for visual feedback, then stops. This loops continuously to complete exercise after exercise.
+After login, the solve agent loops continuously:
 
-Both agents operate by taking screenshots, planning actions based on what they see, and executing clicks/keystrokes — a vision-based browser automation loop.
+1. **Login** — Opens duolingo.com, logs in using your credentials, and starts a lesson. Done either manually (default) or by the Login Agent.
+2. **Solve Agent** — Solves the current exercise using screenshots for visual feedback, then loops to the next exercise.
+
+The Solve Agent operates by taking screenshots, planning actions based on what it sees, and executing clicks/keystrokes — a vision-based browser automation loop.
 
 ## Setup
 
@@ -36,13 +38,19 @@ DUOLINGO_EMAIL=your_duolingo_email
 DUOLINGO_PASSWORD=your_duolingo_password
 ```
 
+## Configuration
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `AGENTIC_LOGIN` | `false` | Set to `true` to use the AI Login Agent instead of the hardcoded manual login sequence |
+
 ## Usage
 
 ```bash
 uv run python main.py
 ```
 
-A Chromium browser window will open. The login agent logs in and starts a lesson, then the solve agent loops through exercises automatically.
+A Chromium browser window will open. By default, login is performed via `manual_login` (hardcoded clicks). Then the solve agent loops through exercises automatically.
 
 ## Project structure
 

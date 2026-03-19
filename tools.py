@@ -26,13 +26,14 @@ async def _get_page() -> Page:
     return _page
 
 
-@function_tool
-async def open_duolingo() -> str:
+async def open_duolingo_impl() -> str:
     """Open duolingo.com in the browser."""
     page = await _get_page()
     response = await page.goto("https://www.duolingo.com", wait_until="domcontentloaded")
     status = response.status if response else "unknown"
     return f"Opened duolingo.com — HTTP {status}"
+
+open_duolingo = function_tool(open_duolingo_impl)
 
 
 # ---------------------------------------------------------------------------
@@ -59,8 +60,7 @@ async def take_screenshot() -> list[ToolOutputText | ToolOutputImage]:
 # ---------------------------------------------------------------------------
 
 
-@function_tool
-async def click(x: int, y: int) -> str:
+async def click_impl(x: int, y: int) -> str:
     """Click at pixel coordinates (x, y) on the screen.
 
     Args:
@@ -70,6 +70,8 @@ async def click(x: int, y: int) -> str:
     page = await _get_page()
     await page.mouse.click(x, y)
     return f"Clicked at ({x}, {y})"
+
+click = function_tool(click_impl)
 
 
 # ---------------------------------------------------------------------------
@@ -108,8 +110,7 @@ async def press_key(key: str) -> str:
 # ---------------------------------------------------------------------------
 
 
-@function_tool
-async def type_duolingo_email() -> str:
+async def type_duolingo_email_impl() -> str:
     """Type the Duolingo email from the DUOLINGO_EMAIL environment variable
     into the currently focused field, one character at a time with a short delay
     between each keystroke.
@@ -123,9 +124,10 @@ async def type_duolingo_email() -> str:
         await page.wait_for_timeout(50)
     return f"Typed Duolingo email ({len(email)} characters)"
 
+type_duolingo_email = function_tool(type_duolingo_email_impl)
 
-@function_tool
-async def type_duolingo_password() -> str:
+
+async def type_duolingo_password_impl() -> str:
     """Type the Duolingo password from the DUOLINGO_PASSWORD environment variable
     into the currently focused field, one character at a time with a short delay
     between each keystroke.
@@ -138,3 +140,5 @@ async def type_duolingo_password() -> str:
         await page.keyboard.type(char)
         await page.wait_for_timeout(50)
     return f"Typed Duolingo password ({len(password)} characters)"
+
+type_duolingo_password = function_tool(type_duolingo_password_impl)
