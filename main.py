@@ -56,5 +56,7 @@ async def main():
             if result.final_output == "DASHBOARD":
                 done = True
 
+        print("All done! Streak successfully extended!")
+
 if __name__ == "__main__":
     asyncio.run(main())
