@@ -48,7 +48,7 @@ async def main():
                 solve_agent,
                 "",
                 max_turns=30,
-                run_config=RunConfig(model="gpt-4.1"),
+                run_config=RunConfig(model="gpt-5.4"),
             )
 
 

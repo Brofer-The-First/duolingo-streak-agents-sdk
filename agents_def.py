@@ -35,9 +35,14 @@ solve_agent = Agent(
 
         Action plan:
         1. take a screenshot
-        2. plan your clicks/types based on the screenshot
-        3. execute your plan by clicking and typing
-        4. take another screenshot to make sure your plan worked. If exercise not solved, Repeat steps 2-4 based on the current screenshot.
+        2. describe the exercise in the screenshot and and its solution, referring to ccordinates of the elements you need to click/type
+        3. plan your clicks/types based on the screenshot
+        4. execute your plan by clicking and typing
+        5. take another screenshot to make sure your plan worked.
+        6. If plan not worked, end your run immediately.
+        7. If plan worked, click on the "next"\"continue" button to go to the next exercise. Then, take another screenshot to make sure the next exercise loaded. If not loaded, try this step again.
+        8. If new exercise loaded, end your run.
+
     """,
     tools=[
         tools.take_screenshot,
