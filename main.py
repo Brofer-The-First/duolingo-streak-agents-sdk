@@ -43,14 +43,18 @@ async def main():
         else:
             await manual_login()
 
-        while True:
-            await Runner.run(
+        done = False
+
+        while done==False:
+            result = await Runner.run(
                 solve_agent,
                 "",
                 max_turns=30,
                 run_config=RunConfig(model="gpt-5.4"),
             )
 
+            if result.final_output == "DASHBOARD":
+                done = True
 
 if __name__ == "__main__":
     asyncio.run(main())

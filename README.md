@@ -36,6 +36,7 @@ Create a `.env` file in the project root:
 OPENAI_API_KEY=your_openai_api_key
 DUOLINGO_EMAIL=your_duolingo_email
 DUOLINGO_PASSWORD=your_duolingo_password
+LEARNED_LANGUAGE=French
 ```
 
 ## Configuration
@@ -43,6 +44,7 @@ DUOLINGO_PASSWORD=your_duolingo_password
 | Variable | Default | Description |
 |----------|---------|-------------|
 | `AGENTIC_LOGIN` | `false` | Set to `true` to use the AI Login Agent instead of the hardcoded manual login sequence |
+| `LEARNED_LANGUAGE` | `French` | The language you are learning on Duolingo |
 
 ## Usage
 
